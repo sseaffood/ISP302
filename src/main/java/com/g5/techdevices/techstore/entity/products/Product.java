@@ -1,8 +1,9 @@
 package com.g5.techdevices.techstore.entity.products;
 
+import com.g5.techdevices.techstore.entity.Cart.CartItem;
 import com.g5.techdevices.techstore.entity.promotions.Promotion;
-import com.g5.techdevices.techstore.entity.users.BillDetail;
-import com.g5.techdevices.techstore.entity.users.Cart;
+import com.g5.techdevices.techstore.entity.Bills.BillDetail;
+import com.g5.techdevices.techstore.entity.review.Review;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

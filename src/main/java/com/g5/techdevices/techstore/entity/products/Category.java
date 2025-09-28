@@ -9,20 +9,22 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-
-@Table(name = "category")
+@Entity
+@Table(name = "Category")
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "category_id")
+    @Column(name = "CategoryId")
     private Integer id;
 
-    @Column(name = "category_name", nullable = false, length = 255)
+    @Column(name = "Name", nullable = false, columnDefinition = "nvarchar(150)")
     private String name;
+
+    @Column(name = "Description", columnDefinition = "nvarchar(1000)")
+    private String description;
 
     @OneToMany(mappedBy = "category")
     private List<Product> products;

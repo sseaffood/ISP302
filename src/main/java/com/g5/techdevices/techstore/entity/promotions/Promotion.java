@@ -10,32 +10,34 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
-@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
-@Table(name = "promotion")
+@Entity
+@Table(name = "Promotion")
 public class Promotion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "promo_id")
+    @Column(name = "PromotionId")
     private Integer id;
 
-    @Column(name = "promo_name", nullable = false)
+    @Column(name = "Name", nullable = false, columnDefinition = "nvarchar(255)")
     private String name;
 
-    @Column(name = "discount_percent", precision = 5, scale = 2)
+    @Column(name = "DiscountPercent", precision = 5, scale = 2)
     private BigDecimal discountPercent;
 
-    @Column(name = "discount_amount", columnDefinition = "money")
+    @Column(name = "DiscountAmount", precision = 18, scale = 2)
     private BigDecimal discountAmount;
 
+    @Column(name = "StartDate")
     private LocalDate startDate;
+
+    @Column(name = "EndDate")
     private LocalDate endDate;
 
-    @Column(name = "is_active")
-    private Boolean active;
+    @Column(name = "IsActive")
+    private Boolean isActive;
 
     @ManyToMany(mappedBy = "promotions")
     private List<Product> products;

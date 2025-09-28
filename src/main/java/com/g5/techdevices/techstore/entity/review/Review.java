@@ -7,39 +7,34 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
+import java.time.LocalDateTime;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "review")
+@Entity
+@Table(name = "Review")
 public class Review {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "review_id")
-    private Long reviewId;
+    @Column(name = "ReviewId")
+    private Long id;
 
-    @Column(name = "product_id", length = 100, nullable = false)
-    private String productId;
-
-    @Column(name = "user_id", nullable = false)
-    private Long userId;
-
-    @Column(name = "rating")
-    private Integer rating;
-
-    @Column(name = "comment", columnDefinition = "nvarchar(max)")
-    private String comment;
-
-    @Column(name = "review_date")
-    private java.time.LocalDateTime reviewDate;
-
-    // Quan hệ
     @ManyToOne
-    @JoinColumn(name = "product_id", insertable = false, updatable = false)
+    @JoinColumn(name = "ProductId")
     private Product product;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+    @JoinColumn(name = "UserId")
     private User user;
+
+    @Column(name = "Rating")
+    private Integer rating;
+
+    @Column(name = "Comment", columnDefinition = "nvarchar(max)")
+    private String comment;
+
+    @Column(name = "ReviewDate")
+    private LocalDateTime reviewDate;
 }
+

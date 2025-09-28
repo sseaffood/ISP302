@@ -27,7 +27,7 @@ public class User {
     @Column(name = "Email", nullable = false, unique = true, columnDefinition = "nvarchar(255)")
     private String email;
 
-    @Column(name = "PasswordHash", nullable = false, columnDefinition = "nvarchar(512)")
+    @Column(name = "PasswordHash", nullable = false, columnDefinition = "nvarchar(255)")
     private String passwordHash;
 
     @Column(name = "Gender")

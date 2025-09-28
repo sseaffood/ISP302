@@ -15,48 +15,47 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "product")
+@Table(name = "Product")
 public class Product {
     @Id
-    @Column(name = "product_id", length = 100)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ProductId")
+    private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "category_id", nullable = false)
+    @JoinColumn(name = "CategoryId")
     private Category category;
 
-    @Column(name = "product_name", columnDefinition = "nvarchar(max)", nullable = false)
+    @Column(name = "Name", nullable = false, columnDefinition = "nvarchar(255)")
     private String name;
 
-    @Column(name = "product_price", columnDefinition = "money", nullable = false)
+    @Column(name = "Price", nullable = false, precision = 18, scale = 2)
     private BigDecimal price;
 
-    @Column(name = "product_describe", columnDefinition = "nvarchar(max)", nullable = false)
+    @Column(name = "Description", columnDefinition = "nvarchar(max)")
     private String description;
 
-    private Integer quantity;
+    @Column(name = "ImageUrl", length = 1000)
+    private String imageUrl;
 
-    @Column(name = "img", length = 50, nullable = false)
-    private String img;
+    @OneToMany(mappedBy = "product")
+    private List<ProductVariant> variants;
 
     @OneToMany(mappedBy = "product")
     private List<BillDetail> billDetails;
 
     @OneToMany(mappedBy = "product")
-    private List<Cart> carts;
-
-    @OneToMany(mappedBy = "product")
-    private List<ProductColor> colors;
-
-    @OneToMany(mappedBy = "product")
-    private List<ProductModel> models;
+    private List<CartItem> cartItems;
 
     @ManyToMany
     @JoinTable(
-            name = "product_promotion",
-            joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "promo_id")
+            name = "ProductPromotion",
+            joinColumns = @JoinColumn(name = "ProductId"),
+            inverseJoinColumns = @JoinColumn(name = "PromotionId")
     )
     private List<Promotion> promotions;
+
+    @OneToMany(mappedBy = "product")
+    private List<Review> reviews;
 }
 

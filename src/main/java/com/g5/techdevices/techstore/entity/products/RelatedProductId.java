@@ -1,14 +1,19 @@
 package com.g5.techdevices.techstore.entity.products;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
+
 import java.io.Serializable;
 import java.util.Objects;
 
-public class relatedProductId implements Serializable {
+@Embeddable
+public class RelatedProductId implements Serializable {
     private Long productId;
+    @Column(name = "RelatedProductId")
     private Long relatedProductId;
 
-    public relatedProductId() {}
+    public RelatedProductId() {}
 
-    public relatedProductId(Long productId, Long relatedProductId) {
+    public RelatedProductId(Long productId, Long relatedProductId) {
         this.productId = productId;
         this.relatedProductId = relatedProductId;
     }
@@ -16,8 +21,8 @@ public class relatedProductId implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof relatedProductId)) return false;
-        relatedProductId that = (relatedProductId) o;
+        if (!(o instanceof RelatedProductId)) return false;
+        RelatedProductId that = (RelatedProductId) o;
         return Objects.equals(productId, that.productId) &&
                 Objects.equals(relatedProductId, that.relatedProductId);
     }

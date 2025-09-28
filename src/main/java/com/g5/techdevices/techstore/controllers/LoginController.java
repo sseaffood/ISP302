@@ -19,9 +19,9 @@ public class LoginController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
-        return userRepository.findByEmailAndPassword(request.getEmail(), request.getPassword())
+        return userRepository.findByEmailAndPasswordHash(request.getEmail(), request.getPassword())
                 .map(user -> {
-                    if (Boolean.TRUE.equals(user.getActive())) {
+                    if (Boolean.TRUE.equals(user.getIsActive())) {
                         return ResponseEntity.ok(Map.of(
                                 "status", "success",
                                 "message", "Login successful",

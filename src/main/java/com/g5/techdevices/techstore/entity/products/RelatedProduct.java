@@ -9,15 +9,20 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "RelatedProduct")
-@IdClass(relatedProductId.class)
 public class RelatedProduct {
-    @Id
+
+    @EmbeddedId
+    private RelatedProductId id;
+
     @ManyToOne
+    @MapsId("productId")
     @JoinColumn(name = "ProductId")
     private Product product;
 
-    @Id
     @ManyToOne
+    @MapsId("relatedProductId")
     @JoinColumn(name = "RelatedProductId")
     private Product relatedProduct;
+
+    // getters/setters
 }
